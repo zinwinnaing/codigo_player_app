@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import AppLayout from "../../components/layout/Layout";
 import { getPlayer } from "../../services/playerSlice";
 import PlayerList from "./component/PlayerList";
 
@@ -10,10 +11,12 @@ const Player = () => {
   useEffect(() => {
     dispatch(getPlayer({ page: 0, size: limit }));
   }, [dispatch, limit]);
-  console.log("player");
+
   return (
     <>
-      <PlayerList limit={limit} setLimit={setLimit} />
+      <AppLayout>
+        <PlayerList limit={limit} setLimit={setLimit} />
+      </AppLayout>
     </>
   );
 };

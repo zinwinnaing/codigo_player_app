@@ -13,12 +13,7 @@ const PlayerList = ({ limit, setLimit }) => {
 
   const PlayerCard = ({ data }) => {
     return (
-      <Card
-        style={{
-          width: "100%",
-          marginTop: 16,
-        }}
-      >
+      <Card>
         <div>
           Player ID : {data?.id}
           <br />
@@ -47,7 +42,7 @@ const PlayerList = ({ limit, setLimit }) => {
         <Loading />
       ) : (
         limit < data?.meta?.total_count && (
-          <div className="text-right pr-2 mt-5 pb-2">
+          <div className="text-center pr-2 mt-2 pb-2">
             <Button
               type="primary"
               onClick={() => {
