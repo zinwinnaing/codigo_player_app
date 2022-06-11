@@ -1,0 +1,11 @@
+.addressHeight {
+  :global(.ant-select-selector) {
+    min-height: 45px !important;
+    :global(.ant-select-selection-item) {
+      line-height: 20px !important;
+    }
+  }
+}
+.addressAdd {
+  height: 45px !important;
+}

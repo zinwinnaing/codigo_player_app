@@ -1,0 +1,62 @@
+@import '../../assets/scss/_variable.scss';
+.loginPanel {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  padding: 6%;
+  top: 0;
+  left: 0;
+
+  .content {
+    background-color: #fff;
+    width: 80%;
+    box-shadow: 10px 30px 20px rgba(0, 0, 0, 0.116);
+    border-radius: 4px;
+    .firstCol {
+      background-color: $secondaryBrandColor;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: auto;
+
+      .img1 {
+        padding-top: 90px !important;
+        width: 300px !important;
+      }
+      .img2 {
+        width: 450px;
+        height: 350px;
+      }
+    }
+    .secondCol {
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: auto;
+
+      h1 {
+        color: #012229;
+      }
+      .signUp {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+      }
+      .form {
+        width: 70%;
+      }
+    }
+  }
+  .secondCol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form {
+      width: 70%;
+    }
+  }
+}
