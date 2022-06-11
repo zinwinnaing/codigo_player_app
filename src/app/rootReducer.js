@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import playerReducer from "../services/playerSlice";
+import teamReducer from "../services/teamSlice";
 
 const appReducer = combineReducers({
   players: playerReducer,
+  teams: teamReducer,
 });
 
 const rootReducer = (state, action) => {

@@ -1,9 +1,9 @@
 import React from "react";
 import { Result, Button } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Page404 = () => {
-  const history = useNavigate();
+  const history = useHistory();
   return (
     <Result
       className="my-5"

@@ -1,4 +1,4 @@
-export const slice = (thunk, identifier) => {
+export const slice = (thunk) => {
   return {
     [thunk.pending]: (state) => {
       return {
@@ -14,12 +14,12 @@ export const slice = (thunk, identifier) => {
       };
     },
     [thunk.fulfilled]: (state, action) => {
+      console.log("action", action?.payload?.data?.meta);
       return {
         ...state,
         hasError: false,
         isPending: false,
-        data: action.payload.data,
-        meta: action.payload.meta,
+        data: action?.payload?.data,
       };
 
       // eslint-disable-next-line no-console

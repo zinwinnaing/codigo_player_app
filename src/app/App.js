@@ -1,20 +1,29 @@
 import React, { Suspense } from "react";
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { Skeleton } from "antd";
 import Page404 from "../pages/errorPages/Page404";
 import Login from "../pages/login/Login";
 import Player from "../pages/player/Player";
+import Team from "../pages/teams/Team";
 
 const App = () => {
-  console.log("in app");
   return (
     <Router>
       <Suspense fallback={<Skeleton active />}>
-        <Routes>
-          <Route exact path="/" element={<Login />}></Route>
-          <Route exact path="/players" element={<Player />}></Route>
-          <Route path="*" element={<Page404 />}></Route>
-        </Routes>
+        <Switch>
+          <Route exact path="/">
+            <Login></Login>
+          </Route>
+          <Route exact path="/players">
+            <Player />
+          </Route>
+          <Route exact path="/teams">
+            <Team />
+          </Route>
+          <Route path="*">
+            <Page404 />
+          </Route>
+        </Switch>
       </Suspense>
     </Router>
   );

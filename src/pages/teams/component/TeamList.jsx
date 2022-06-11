@@ -1,32 +1,27 @@
 import { Card, Row, Col, Button } from "antd";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { playerSelector } from "../../../services/playerSlice";
 import _ from "lodash";
 import Loading from "../../../components/loading/Loading";
+import { teamSelector } from "../../../services/teamSlice";
 
-const PlayerList = ({ limit, setLimit }) => {
-  const { data, isPending } = useSelector(playerSelector);
+const TeamList = ({ limit, setLimit }) => {
+  const { data, isPending } = useSelector(teamSelector);
   useEffect(() => {
-    localStorage.setItem("player", JSON.stringify(data?.data));
+    localStorage.setItem("team", JSON.stringify(data?.data));
   }, [data]);
 
   const PlayerCard = ({ data }) => {
     return (
-      <Card
-        style={{
-          width: "100%",
-          marginTop: 16,
-        }}
-      >
+      <Card>
         <div>
-          Player ID : {data?.id}
-          <br />
-          <span>Player Name : </span> {data?.first_name} {data?.last_name}
+          <span>Team Name : </span> {data?.full_name}({data?.abbreviation})
           <br></br>
-          Team : {data?.team.full_name}
+          Conference : {data?.conference}
           <br></br>
-          Position : {data?.position}
+          City : {data?.city}
+          <br></br>
+          Division : {data?.division}
         </div>
       </Card>
     );
@@ -47,7 +42,7 @@ const PlayerList = ({ limit, setLimit }) => {
         <Loading />
       ) : (
         limit < data?.meta?.total_count && (
-          <div className="text-right pr-2 mt-5 pb-2">
+          <div className="text-right pr-2 pb-2">
             <Button
               type="primary"
               onClick={() => {
@@ -64,4 +59,4 @@ const PlayerList = ({ limit, setLimit }) => {
   );
 };
 
-export default PlayerList;
+export default TeamList;
