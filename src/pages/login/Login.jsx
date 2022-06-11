@@ -1,21 +1,21 @@
-import { Col, Row } from "antd";
+import { Card, Col, Row } from "antd";
 import React from "react";
 import LoginForm from "./components/LoginForm";
 import styles from "./Login.module.scss";
 
 const Login = () => {
   return (
-    <div>
-      <div className={styles.loginPanel}>
-        <Row className={styles.content}>
-          <Col span={12} className={styles.secondCol}>
+    <div className={styles.loginPanel}>
+      <Row>
+        <Card className={styles.loginForm}>
+          <Col>
             <div className={styles.form}>
-              <h1>signIn</h1>
+              <h1 className="text-center">Sign In</h1>
               <LoginForm />
             </div>
           </Col>
-        </Row>
-      </div>
+        </Card>
+      </Row>
     </div>
   );
 };

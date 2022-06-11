@@ -8,7 +8,7 @@ import { loginSchema } from "../../../components/fields/ValidationSchema";
 const LoginForm = () => {
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
+      initialValues={{ identifier: "" }}
       validationSchema={loginSchema}
       onSubmit={(data) => {
         console.log("data", data);
@@ -19,8 +19,8 @@ const LoginForm = () => {
           <Field
             name="identifier"
             id="identifier"
-            label="phoneNumberOrEmail"
-            placeholder="enterPhoneNumberOrEmail"
+            label="User Name"
+            placeholder="Enter User Name"
             type="text"
             prefixIcon={<UserOutlined />}
           />
