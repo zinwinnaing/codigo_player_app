@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import AppLayout from "../../components/layout/Layout";
-import { getPlayer } from "../../services/playerSlice";
+import Loading from "../../components/loading/Loading";
+import { playerSelector } from "../../services/playerSlice";
+import { PlAYER_LABEL } from "../../variables/constants";
 import PlayerList from "./component/PlayerList";
 
 const Player = () => {
-  const dispatch = useDispatch();
-
-  const [limit, setLimit] = useState(10);
+  const { data, isPending } = useSelector(playerSelector);
   useEffect(() => {
-    dispatch(getPlayer({ page: 0, size: limit }));
-  }, [dispatch, limit]);
-
+    if (isPending === false) {
+      localStorage.setItem(PlAYER_LABEL, JSON.stringify(data?.data));
+    }
+  }, [data, isPending]);
   return (
     <>
-      <AppLayout>
-        <PlayerList limit={limit} setLimit={setLimit} />
+      <AppLayout title="Player List">
+        <div className="d-flex px-4 pt-4">
+          <h1>Player List</h1>
+        </div>
+        {isPending === false ? <PlayerList /> : <Loading></Loading>}
       </AppLayout>
     </>
   );

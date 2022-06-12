@@ -4,6 +4,7 @@ import { Skeleton } from "antd";
 import Page404 from "../pages/errorPages/Page404";
 import Login from "../pages/login/Login";
 import Player from "../pages/player/Player";
+import Team from "../pages/teams/Team";
 
 const App = () => {
   return (
@@ -15,6 +16,9 @@ const App = () => {
           </Route>
           <Route exact path="/players">
             <Player />
+          </Route>
+          <Route exact path="/teams">
+            <Team />
           </Route>
           <Route path="*">
             <Page404 />

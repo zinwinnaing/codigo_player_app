@@ -14,7 +14,6 @@ export const slice = (thunk) => {
       };
     },
     [thunk.fulfilled]: (state, action) => {
-      console.log("action", action?.payload?.data?.meta);
       return {
         ...state,
         hasError: false,

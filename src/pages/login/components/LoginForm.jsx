@@ -4,14 +4,19 @@ import { UserOutlined } from "@ant-design/icons";
 import { Formik } from "formik";
 import Field from "../../../components/fields/Field";
 import { loginSchema } from "../../../components/fields/ValidationSchema";
+import { useHistory } from "react-router-dom";
 
 const LoginForm = () => {
+  const history = useHistory();
+
   return (
     <Formik
       initialValues={{ identifier: "" }}
       validationSchema={loginSchema}
       onSubmit={(data) => {
-        console.log("data", data);
+        localStorage.setItem("user_name", data?.identifier);
+
+        history.push("/players");
       }}
     >
       {({ handleSubmit }) => (

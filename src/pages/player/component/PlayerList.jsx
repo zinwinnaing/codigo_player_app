@@ -1,15 +1,18 @@
 import { Card, Row, Col, Button } from "antd";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { playerSelector } from "../../../services/playerSlice";
 import _ from "lodash";
-import Loading from "../../../components/loading/Loading";
+import { PlAYER_LABEL } from "../../../variables/constants";
 
-const PlayerList = ({ limit, setLimit }) => {
-  const { data, isPending } = useSelector(playerSelector);
-  useEffect(() => {
-    localStorage.setItem("player", JSON.stringify(data?.data));
-  }, [data]);
+const PlayerList = () => {
+  const { isPending, data: meta } = useSelector(playerSelector);
+  const [limit, setLimit] = useState(10);
+  const [playerData, setPlayerData] = useState([]);
+
+  console.log("playdata", playerData);
+
+  const data = JSON.parse(localStorage.getItem(PlAYER_LABEL));
 
   const PlayerCard = ({ data }) => {
     return (
@@ -29,31 +32,31 @@ const PlayerList = ({ limit, setLimit }) => {
 
   return (
     <>
-      <Row className="p-2">
-        {_.map(data?.data, (d) => {
-          return (
-            <Col span={8} className="p-2" key={d?.id}>
-              <PlayerCard data={d} />
-            </Col>
-          );
-        })}
-      </Row>
-      {isPending === true ? (
-        <Loading />
-      ) : (
-        limit < data?.meta?.total_count && (
-          <div className="text-center pr-2 mt-2 pb-2">
-            <Button
-              type="primary"
-              onClick={() => {
-                setLimit(limit + 10);
-              }}
-              loading={isPending === true}
-            >
-              LoadMore
-            </Button>
-          </div>
-        )
+      {data && (
+        <>
+          <Row className="p-2">
+            {_.map(data.slice(0, limit), (d) => {
+              return (
+                <Col span={8} className="p-2" key={d?.id}>
+                  <PlayerCard data={d} />
+                </Col>
+              );
+            })}
+          </Row>
+          {limit < meta?.meta?.total_count && (
+            <div className="text-center pr-2 mt-2 pb-2">
+              <Button
+                type="primary"
+                onClick={() => {
+                  setLimit(limit + 10);
+                }}
+                loading={isPending === true}
+              >
+                LoadMore
+              </Button>
+            </div>
+          )}
+        </>
       )}
     </>
   );

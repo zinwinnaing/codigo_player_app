@@ -11,7 +11,6 @@ const initialState = {
 export const getPlayer = createAsyncThunk(
   "player/getPlayer",
   async (params) => {
-    console.log(params);
     const { data, headers } = await axios.get(
       `https://www.balldontlie.io/api/v1/players`,
       {
