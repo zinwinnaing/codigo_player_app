@@ -13,7 +13,7 @@ const Login = () => {
     dispatch(getPlayer({ page: 0, size: 9999 })).then(({ payload }) => {
       localStorage.setItem(PlAYER_LABEL, JSON.stringify(payload?.data?.data));
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={styles.loginPanel}>

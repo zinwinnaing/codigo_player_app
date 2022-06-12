@@ -20,13 +20,6 @@ export const slice = (thunk) => {
         isPending: false,
         data: action?.payload?.data,
       };
-
-      // eslint-disable-next-line no-console
-      console.error(
-        "Invalid payload type, cannot reduce by identifier",
-        action.payload
-      );
-      return state;
     },
   };
 };
