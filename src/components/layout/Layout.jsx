@@ -1,12 +1,28 @@
-import { Layout } from "antd";
-import React from "react";
-import { Link } from "react-router-dom";
+import { Button, Layout } from "antd";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { authSelector, logout } from "../../services/authSlice";
 import { LOGIN_LABEL } from "../../variables/constants";
 import styles from "./Layout.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import _ from "lodash";
+
 const { Header, Content } = Layout;
 
 const AppLayout = ({ children, title }) => {
   const user_name = localStorage.getItem(LOGIN_LABEL);
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector(authSelector);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (isAuthenticated === false) {
+      if (_.isEmpty(user_name)) {
+        history.push("/");
+      }
+    }
+  }, [isAuthenticated, history, user_name]);
+
   return (
     <Layout className={styles.layout}>
       <Header>
@@ -19,6 +35,16 @@ const AppLayout = ({ children, title }) => {
               </div>
               <div className={styles.navLink}>
                 <Link to="/teams">Team</Link>
+              </div>
+              <div className={styles.navLink}>
+                <Button
+                  type="link"
+                  onClick={() => {
+                    dispatch(logout());
+                  }}
+                >
+                  Log out
+                </Button>
               </div>
             </div>
           </div>

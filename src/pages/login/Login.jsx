@@ -21,7 +21,7 @@ const Login = () => {
         <Card className={styles.loginForm}>
           <Col>
             <div className={styles.form}>
-              <h1 className="text-center">Sign In</h1>
+              <h1 className="text-center">Log In</h1>
               <LoginForm />
             </div>
           </Col>

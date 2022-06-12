@@ -4,7 +4,7 @@ import React from "react";
 import _ from "lodash";
 import { teamSchema } from "../../../components/fields/ValidationSchema";
 import TeamForm from "./TeamForm";
-import { PlAYER_LABEL, TEAM_LABEL } from "../../../variables/constants";
+import { TEAM_LABEL } from "../../../variables/constants";
 
 const TeamCreateModal = ({ title, isOpen, onClose }) => {
   const initialValues = {
@@ -16,10 +16,10 @@ const TeamCreateModal = ({ title, isOpen, onClose }) => {
 
   const onFormSubmit = (data, { resetForm, setSubmitting }) => {
     const teamData = JSON.parse(localStorage.getItem(TEAM_LABEL)) || [];
-
     let parseData;
 
     const compare = _.find(teamData, ["name", data?.name]);
+
     if (compare) {
       return message.error("Name is already exit .");
     } else {
@@ -28,19 +28,6 @@ const TeamCreateModal = ({ title, isOpen, onClose }) => {
       } else {
         parseData = [data];
       }
-      const playerList = JSON.parse(localStorage.getItem(PlAYER_LABEL));
-
-      const newPlayerList = _.map(playerList, (no) => {
-        let updatePlayer = _.map(data?.player, (p) => {
-          if (no?.id === p) {
-            return { ...no, team: "new player" };
-          }
-        });
-        return updatePlayer;
-      });
-
-      console.log("newPlayerList", newPlayerList);
-
       localStorage.setItem(TEAM_LABEL, JSON.stringify(parseData));
       resetForm();
       onClose();
