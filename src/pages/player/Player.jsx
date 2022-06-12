@@ -1,18 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import AppLayout from "../../components/layout/Layout";
 import Loading from "../../components/loading/Loading";
 import { playerSelector } from "../../services/playerSlice";
-import { PlAYER_LABEL } from "../../variables/constants";
 import PlayerList from "./component/PlayerList";
 
 const Player = () => {
-  const { data, isPending } = useSelector(playerSelector);
-  useEffect(() => {
-    if (isPending === false) {
-      localStorage.setItem(PlAYER_LABEL, JSON.stringify(data?.data));
-    }
-  }, [data, isPending]);
+  const { isPending } = useSelector(playerSelector);
+
   return (
     <>
       <AppLayout title="Player List">

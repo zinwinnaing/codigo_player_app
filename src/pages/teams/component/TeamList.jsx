@@ -54,7 +54,7 @@ const TeamList = () => {
       <Row className="p-2">
         {_.map(teamData, (d) => {
           return (
-            <Col span={8} className="p-2" key={d?.id}>
+            <Col span={8} className="p-2" key={d?.name}>
               <TeamCard data={d} />
             </Col>
           );

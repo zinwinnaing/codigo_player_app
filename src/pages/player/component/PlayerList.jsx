@@ -8,9 +8,6 @@ import { PlAYER_LABEL } from "../../../variables/constants";
 const PlayerList = () => {
   const { isPending, data: meta } = useSelector(playerSelector);
   const [limit, setLimit] = useState(10);
-  const [playerData, setPlayerData] = useState([]);
-
-  console.log("playdata", playerData);
 
   const data = JSON.parse(localStorage.getItem(PlAYER_LABEL));
 
